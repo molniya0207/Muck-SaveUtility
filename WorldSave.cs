@@ -124,27 +124,54 @@ namespace SaveUtility
             position[1] = PlayerMovement.Instance.transform.position.y;
             position[2] = PlayerMovement.Instance.transform.position.z;
 
-            powerups = (int[])typeof(PowerupInventory).GetField("powerups", flags).GetValue(PowerupInventory.Instance);
-
-            armor = new int[4];
-            for (int i = 0; i < 4; i++)
+            try
             {
-                if (InventoryUI.Instance.armorCells[i].currentItem)
-                {
-                    armor[i] = InventoryUI.Instance.armorCells[i].currentItem.id;
-                }
-                else
-                {
-                    armor[i] = -1;
-                }
-
+                powerups = (int[])typeof(PowerupInventory).GetField("powerups", flags).GetValue(PowerupInventory.Instance);
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE POWER UP");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE POWER UP");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE POWER UP", "");
             }
 
-            softUnlocks = (bool[])typeof(UiEvents).GetField("unlockedSoft", flags).GetValue(UiEvents.Instance);
+            try
+            {
+                armor = new int[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    if (InventoryUI.Instance.armorCells[i].currentItem)
+                    {
+                        armor[i] = InventoryUI.Instance.armorCells[i].currentItem.id;
+                    }
+                    else
+                    {
+                        armor[i] = -1;
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE ARMOR");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE ARMOR");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE ARMOR", "");
+            }
+
+            try
+            {
+                softUnlocks = (bool[])typeof(UiEvents).GetField("unlockedSoft", flags).GetValue(UiEvents.Instance);
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE UNLOCKS");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE UNLOCKS");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE UNLOCKS", "");
+            }
+            
 
             foreach (InventoryCell cell in InventoryUI.Instance.cells)
             {
-                
                 if (cell.currentItem)
                 {
                     int cellAmount = cell.currentItem.amount;
@@ -168,55 +195,114 @@ namespace SaveUtility
                 arrows = new Tuple<int, int>(-1, 0);
             }
 
-            //multiplayer save
-            clientPlayers = LoadManager.players;
-
-            //world save
-            builds = World.builds.Values.ToList();
-
-            foreach (Chest chest in ChestManager.Instance.chests.Values.ToList())
+            try
             {
-                if (chest.chestSize == 21)
-                {
-                    chests.Add(new ChestWrapper(chest));
-                }
-                else if (chest.chestSize == 6)
-                {
-                    cauldrons.Add(new ChestWrapper(chest));
-                }
-                else if (chest.chestSize == 3)
-                {
-                    furnaces.Add(new ChestWrapper(chest));
-                }
+                //multiplayer save
+                clientPlayers = LoadManager.players;
+
+                //world save
+                builds = World.builds.Values.ToList();
+            }
+            catch (Exception)
+            {
+                Debug.LogError("HARD SAVE ERROR (SE_MW)");
+                ClientSend.SendChatMessage("<color=#FF0000>HARD SAVE ERROR (SE_MW)");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>HARD SAVE ERROR (SE_MW)", "");
+                throw;
             }
 
-            foreach (Mob mob in MobManager.Instance.mobs.Values.ToList())
+            try
             {
-                if (mob.mobType.id == 9 || mob.mobType.id == 10 || mob.mobType.id == 14)
+                foreach (Chest chest in ChestManager.Instance.chests.Values.ToList())
                 {
-                    mobs.Add(new MobWrapper(mob));
+                    if (chest.chestSize == 21)
+                    {
+                        chests.Add(new ChestWrapper(chest));
+                    }
+                    else if (chest.chestSize == 6)
+                    {
+                        cauldrons.Add(new ChestWrapper(chest));
+                    }
+                    else if (chest.chestSize == 3)
+                    {
+                        furnaces.Add(new ChestWrapper(chest));
+                    }
                 }
             }
-
-            var repairComponents = (Component[])typeof(Boat).GetField("repairs", flags).GetValue(Boat.Instance);
-
-            foreach (RepairInteract repair in repairComponents)
+            catch (Exception)
             {
-                if (!repair)
+                Debug.LogError("CAN'T SAVE CONTAINERS");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE CONTAINERS");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE CONTAINERS", "");
+            }
+
+            try
+            {
+                foreach (Mob mob in MobManager.Instance.mobs.Values.ToList())
                 {
-                    repairs.Add(repair.GetId());
+                    if (mob.mobType.id == 9 || mob.mobType.id == 10 || mob.mobType.id == 14)
+                    {
+                        mobs.Add(new MobWrapper(mob));
+                    }
                 }
             }
-
-            foreach (GameObject droppedItem in ItemManager.Instance.list.Values)
+            catch (Exception)
             {
-                droppedItems.Add(new DroppedItemWrapper(droppedItem));
+                Debug.LogError("CAN'T SAVE MOBS");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE MOBS");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE MOBS", "");
             }
 
-            customSaves = CustomSaveData.customSaves;
+            try
+            {
+                var repairComponents = (Component[])typeof(Boat).GetField("repairs", flags).GetValue(Boat.Instance);
+
+                foreach (RepairInteract repair in repairComponents)
+                {
+                    if (!repair)
+                    {
+                        repairs.Add(repair.GetId());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE BOAT REPAIRS");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE BOAT REPAIRS");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE BOAT REPAIRS", "");
+            }
+
+            try
+            {
+                foreach (GameObject droppedItem in ItemManager.Instance.list.Values)
+                {
+                    droppedItems.Add(new DroppedItemWrapper(droppedItem));
+                }
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE DROPPED ITEMS");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE DROPPED ITEMS");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE DROPPED ITEMS", "");
+            }
+
+            try
+            {
+                customSaves = CustomSaveData.customSaves;
+            }
+            catch (Exception)
+            {
+                Debug.LogError("CAN'T SAVE CUSTOM");
+                ClientSend.SendChatMessage("<color=#FF0000>CAN'T SAVE CUSTOM");
+                ChatBox.Instance.AppendMessage(-1, "<color=#FF0000>CAN'T SAVE CUSTOM", "");
+            }
 
             Debug.Log("Current Day: " + currentDay);
             Debug.Log("World Seed: " + worldSeed);
+            ClientSend.SendChatMessage("<color=#00FF00>Current Day: " + currentDay);
+            ChatBox.Instance.AppendMessage(-1, "<color=#00FF00>Current Day: " + currentDay, "");
+            ClientSend.SendChatMessage("<color=#00FF00>World Seed: " + worldSeed);
+            ChatBox.Instance.AppendMessage(-1, "<color=#00FF00>World Seed: " + worldSeed, "");
         }
     }
 }

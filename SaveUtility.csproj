@@ -32,19 +32,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\Manhunt\MuckManhunt\bin\Debug\0Harmony.dll</HintPath>
+      <HintPath>..\..\..\Downloads\BepInEx-BepInExPack_Muck-5.4.1101\BepInExPack_Muck\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Muck\Muck_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="BepInEx">
-      <HintPath>..\Manhunt\MuckManhunt\bin\Debug\BepInEx.dll</HintPath>
+      <HintPath>..\..\..\Downloads\BepInEx-BepInExPack_Muck-5.4.1101\BepInExPack_Muck\BepInEx\core\BepInEx.dll</HintPath>
     </Reference>
     <Reference Include="Boxophobic.Utils.Scripts">
-      <HintPath>..\References\Boxophobic.Utils.Scripts.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\Boxophobic.Utils.Scripts.dll</HintPath>
     </Reference>
     <Reference Include="Facepunch.Steamworks.Win64">
-      <HintPath>..\References\Facepunch.Steamworks.Win64.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\Facepunch.Steamworks.Win64.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,40 +60,46 @@
     <Reference Include="System.Xml" />
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\References\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\Games\Steam\steamapps\common\Muck\Muck_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
