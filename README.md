@@ -1,5 +1,6 @@
 # Muck-SaveUtility
-Save/Load mod for Muck
+Save/Load mod for Muck made by flarfo.
+This repo is for some fixes by me.
 
 ## Installation
 
