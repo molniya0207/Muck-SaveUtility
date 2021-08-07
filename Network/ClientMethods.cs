@@ -217,7 +217,14 @@ namespace SaveUtility
 
                 if (id != -1)
                 {
-                    InventoryUI.Instance.cells[count].ForceAddItem(allScriptableItems[id], amount);
+                    try
+                    {
+                        InventoryUI.Instance.cells[count].ForceAddItem(allScriptableItems[id], amount);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.Log("cool");
+                    }
                 }
                 
                 count++;
@@ -315,8 +322,15 @@ namespace SaveUtility
 
                 if (id != -1)
                 {
-                    InventoryUI.Instance.AddArmor(allScriptableItems[id]);
-                    PlayerStatus.Instance.UpdateArmor(i, id);
+                    try
+                    {
+                        InventoryUI.Instance.AddArmor(allScriptableItems[id]);
+                        PlayerStatus.Instance.UpdateArmor(i, id);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.Log("sponsored by raid shadow legends");
+                    }
                 }
             }
             OtherInput.Instance.ToggleInventory(OtherInput.CraftingState.Inventory);

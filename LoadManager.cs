@@ -232,7 +232,14 @@ namespace SaveUtility
             {
                 if (loadedSave.inventory[i].Item1 != -1)
                 {
-                    InventoryUI.Instance.cells[i].ForceAddItem(allScriptableItems[loadedSave.inventory[i].Item1], loadedSave.inventory[i].Item2);
+                    try
+                    {
+                        InventoryUI.Instance.cells[i].ForceAddItem(allScriptableItems[loadedSave.inventory[i].Item1], loadedSave.inventory[i].Item2);
+                    }
+                    catch (Exception)
+                    {
+                        Debug.Log("asicserr");
+                    }
                 }
             }
 
@@ -298,23 +305,8 @@ namespace SaveUtility
                 ClientSend.Interact(id);
             }
 
-            switch (loadedSave.boatStatus)
-            {
-                case 0:
-                    return;
-                case 1:
-                    Boat.Instance.MarkShip();
-                    return;
-                case 2:
-                    Boat.Instance.MarkShip();
-                    typeof(Boat).GetMethod("MarkGems", flags).Invoke(Boat.Instance, null);
-                    return;
-                case 3:
-                    Boat.Instance.MarkShip();
-                    typeof(Boat).GetMethod("MarkGems", flags).Invoke(Boat.Instance, null);
-                    Boat.Instance.BoatFinished(ResourceManager.Instance.GetNextId());
-                    return;
-            }
+            Boat.Instance.MarkShip();
+            typeof(Boat).GetMethod("MarkGems", flags).Invoke(Boat.Instance, null);
         }
 
         [HarmonyPatch(typeof(GameLoop), "Awake")]
